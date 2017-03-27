@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { GlobalVars } from '../../providers/global-vars';
 import { LoginPage } from '../login/login';
+import { ErrorPage } from '../error/error';
 
 /*
   Generated class for the Loading page.
@@ -25,7 +26,7 @@ export class LoadingPage {
   }
   
   toErrorPage(){
-    
+    this.navCtrl.push(ErrorPage);
   }
 
 }

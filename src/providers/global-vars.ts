@@ -8,6 +8,7 @@ export class GlobalVars {
   client: any;
   apiVersion: any;
   config: any;
+  errorMessage: any;
 
 
   constructor(private http: Http) {
@@ -19,7 +20,7 @@ export class GlobalVars {
   public getConfigObservable(){
     
     let headers = new Headers();
-    headers.append('client', 'doc');
+    headers.append('client', this.client);
 
     let requestOptions = new RequestOptions(Object.assign({
       method: "GET",
@@ -39,8 +40,9 @@ export class GlobalVars {
         return res.json().result;
       })
       .catch((error: any) => {
-        console.debug(error || 'Server error');
-        return Observable.throw(error || 'Server error')
+        console.debug('Server error' + (error.json() && error.json().error ? ' : ' + error.json().error : '') );
+        this.errorMessage= error.json() && error.json().error ? ' : ' + error.json().error : '';
+        return Observable.throw('Server error' + (error.json() && error.json().error ? ' : ' + error.json().error : ''))
       }));
   }
 

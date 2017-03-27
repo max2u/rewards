@@ -7,6 +7,7 @@ import { AuthService } from '../providers/auth-service';
 import { GlobalVars } from '../providers/global-vars';
 import { RegisterPage } from '../pages/register/register';
 import { LoadingPage } from '../pages/loading/loading';
+import { ErrorPage } from '../pages/error/error';
  
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { LoadingPage } from '../pages/loading/loading';
     HomePage,
     LoginPage,
     RegisterPage,
-    LoadingPage
+    LoadingPage,
+    ErrorPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -25,7 +27,8 @@ import { LoadingPage } from '../pages/loading/loading';
     HomePage,
     LoginPage,
     RegisterPage,
-    LoadingPage
+    LoadingPage,
+    ErrorPage
   ],
   providers: [
     AuthService,
