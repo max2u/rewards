@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { GlobalVars } from '../../providers/global-vars';
+import { ModymService } from '../../providers/modym-service';
 import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
  
@@ -17,7 +18,8 @@ export class LoginPage {
     private auth: AuthService, 
     private alertCtrl: AlertController, 
     private loadingCtrl: LoadingController,
-    private globalVars: GlobalVars
+    protected globalVars: GlobalVars,
+    protected modymService: ModymService 
   ) {}
  
   public createAccount() {

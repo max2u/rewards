@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
+import { ModymService } from './modym-service';
+
 import 'rxjs/add/operator/map';
  
 export class User {
@@ -15,7 +17,9 @@ export class User {
 @Injectable()
 export class AuthService {
   currentUser: User;
- 
+  
+  constructor(private modymService: ModymService){}
+  
   public login(credentials) {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");

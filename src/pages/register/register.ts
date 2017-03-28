@@ -2,45 +2,46 @@ import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { GlobalVars } from '../../providers/global-vars';
- 
+import { ModymService } from '../../providers/modym-service';
+
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html'
 })
 export class RegisterPage {
   createSuccess = false;
-  registerCredentials = {email: '', password: ''};
- 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private globalVars : GlobalVars) {}
- 
+  registerCredentials = { email: '', password: '' };
+
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, protected globalVars: GlobalVars, private modymService: ModymService) { }
+
   public register() {
     this.auth.register(this.registerCredentials).subscribe(success => {
       if (success) {
         this.createSuccess = true;
-          this.showPopup("Success", "Account created.");
+        this.showPopup("Success", "Account created.");
       } else {
         this.showPopup("Error", "Problem creating account.");
       }
     },
-    error => {
-      this.showPopup("Error", error);
-    });
+      error => {
+        this.showPopup("Error", error);
+      });
   }
- 
+
   showPopup(title, text) {
     let alert = this.alertCtrl.create({
       title: title,
       subTitle: text,
       buttons: [
-       {
-         text: 'OK',
-         handler: data => {
-           if (this.createSuccess) {
-             this.nav.popToRoot();
-           }
-         }
-       }
-     ]
+        {
+          text: 'OK',
+          handler: data => {
+            if (this.createSuccess) {
+              this.nav.popToRoot();
+            }
+          }
+        }
+      ]
     });
     alert.present();
   }

@@ -1,82 +1,52 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class GlobalVars {
   env: any;
   client: any;
   apiVersion: any;
-  config: any;
   errorMessage: any;
+  config: ConfigResponse;
 
 
-  constructor(private http: Http) {
+  constructor() {
     this.env = 'local';
     this.client = 'doc';
     this.apiVersion = 'v1';
   }
+
+  public getBgColor() {
+    return this.config && this.config.primaryColor ?  this.config.primaryColor : '#eee';
+  }
   
-  public getConfigObservable(){
-    
-    let headers = new Headers();
-    headers.append('client', this.client);
-
-    let requestOptions = new RequestOptions(Object.assign({
-      method: "GET",
-      url: this.getUrl() + '/config?client=' + this.client,
-      body: "",
-      headers: headers
-    }));
-    
-    
-    if (this.config){
-      return Observable.of(this.config);
-    }
-    
-    return this._handleSecurityResponse(this.http.get(this.getUrl() + '/config', requestOptions)
-      .map((res: Response) => {
-        //       this.storageService.setAuthInfo(res.headers); 
-        return res.json().result;
-      })
-      .catch((error: any) => {
-        console.debug('Server error' + (error.json() && error.json().error ? ' : ' + error.json().error : '') );
-        this.errorMessage= error.json() && error.json().error ? ' : ' + error.json().error : '';
-        return Observable.throw('Server error' + (error.json() && error.json().error ? ' : ' + error.json().error : ''))
-      }));
+  public getLogoImage() {
+    return this.config ? this.config.logoImage : '';
   }
-
-
-  private _handleSecurityResponse(response: Observable<Response>): Observable<Response> {
-    var sharable = response.share();
-
-    sharable.subscribe(data => this.config = data, (error: Response) => {
-      return Observable.throw(error || 'Server error')
-    });
-
-    return sharable;
+  
+  public getBgImage() {
+    return this.config ? this.config.backgroundImage : '';
   }
+}
 
 
-  getUrl() {
-    if (this.env === 'local') {
-      return 'http://' + this.client + '.localhost:8880/modym-portal/api/' + this.apiVersion;
-    }
-    if (this.env === 'local_em') {
-      return 'http://10.0.2.2:8880/modym-portal/api/' + this.apiVersion;
-    }
-    if (this.env === 'local_mobile') {
-      return 'http://10.53.77.117:8880/modym-portal/api/' + this.apiVersion;
-    }
-    return 'https://' + this.client + '.rewards.modym.com/api/' + this.apiVersion;
-  }
+// sync with PortalConfigResponse
+export class ConfigResponse {
+  public name : any;
+  public headLine : any;
 
-  getClient() {
-    return this.client;
-  }
+  public primaryColor : any;
+  public logoImage : any;
+  public backgroundImage : any;
 
-  getConfig() {
-    return this.config;
-  }
+  public emailRequired : any;
+  public phoneRequired : any;
+  public phoneVerificationRequired : any;
 
+  public facebook : any;
+  public instagram : any;
+  public twitter : any;
+  public youtube : any;
+
+  public privacyPolicy : any;
+  public userAgreement : any;
 }

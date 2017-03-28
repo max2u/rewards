@@ -1,14 +1,20 @@
+
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
+
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { LoginPage } from '../pages/login/login';
+
 import { AuthService } from '../providers/auth-service';
 import { GlobalVars } from '../providers/global-vars';
+import { ModymService } from '../providers/modym-service'
+
+import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { LoadingPage } from '../pages/loading/loading';
 import { ErrorPage } from '../pages/error/error';
- 
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -32,7 +38,8 @@ import { ErrorPage } from '../pages/error/error';
   ],
   providers: [
     AuthService,
-    GlobalVars
+    GlobalVars,
+    ModymService
   ]
 })
-export class AppModule {}
+export class AppModule { }

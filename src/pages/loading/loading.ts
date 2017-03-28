@@ -1,32 +1,16 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+import { ModymService } from '../../providers/modym-service';
 import { GlobalVars } from '../../providers/global-vars';
 import { LoginPage } from '../login/login';
-import { ErrorPage } from '../error/error';
 
-/*
-  Generated class for the Loading page.
-
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
   selector: 'page-loading',
   templateUrl: 'loading.html'
 })
 export class LoadingPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public globalVars: GlobalVars) {
-    this.globalVars.getConfigObservable().subscribe(data => this.toLoginPage(), error => this.toErrorPage() );
-    
+  constructor(public navCtrl: NavController, public modymService: ModymService, protected globalVars: GlobalVars) {
+    //when getting the config done, redirect to the login page
+    this.modymService.getConfig(this.navCtrl).subscribe(data => this.navCtrl.push(LoginPage));
   }
-
-  toLoginPage(){
-    this.navCtrl.push(LoginPage);
-  }
-  
-  toErrorPage(){
-    this.navCtrl.push(ErrorPage);
-  }
-
 }
