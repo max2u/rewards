@@ -1,52 +1,33 @@
+import { ConfigResponse } from '../modym/ConfigResponse';
 import { Injectable } from '@angular/core';
 
 @Injectable()
 export class GlobalVars {
-  env: any;
-  client: any;
-  apiVersion: any;
-  errorMessage: any;
+  env: string;
+  client: string;
+  apiVersion: string;
+  errorMessage: string;
+  mobileVersion: string;
   config: ConfigResponse;
-
+  userToken: string;
+  uuid: string;
 
   constructor() {
     this.env = 'local';
     this.client = 'doc';
     this.apiVersion = 'v1';
+    this.mobileVersion = '1.0-Alpha';
   }
 
   public getBgColor() {
-    return this.config && this.config.primaryColor ?  this.config.primaryColor : '#eee';
+    return this.config && this.config.primaryColor ? this.config.primaryColor : '#eee';
   }
-  
+
   public getLogoImage() {
     return this.config ? this.config.logoImage : '';
   }
-  
+
   public getBgImage() {
     return this.config ? this.config.backgroundImage : '';
   }
-}
-
-
-// sync with PortalConfigResponse
-export class ConfigResponse {
-  public name : any;
-  public headLine : any;
-
-  public primaryColor : any;
-  public logoImage : any;
-  public backgroundImage : any;
-
-  public emailRequired : any;
-  public phoneRequired : any;
-  public phoneVerificationRequired : any;
-
-  public facebook : any;
-  public instagram : any;
-  public twitter : any;
-  public youtube : any;
-
-  public privacyPolicy : any;
-  public userAgreement : any;
 }

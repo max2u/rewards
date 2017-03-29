@@ -1,39 +1,35 @@
+import { UserAuthenticationResponse } from '../modym/UserAuthenticationResponse';
+import { UserAuthenticationRequest } from '../modym/request/UserAuthenticationRequest';
 import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 import { ModymService } from './modym-service';
+import 'rxjs/add/operator/catch';
 
-import 'rxjs/add/operator/map';
- 
-export class User {
-  name: string;
-  email: string;
- 
-  constructor(name: string, email: string) {
-    this.name = name;
-    this.email = email;
-  }
-}
- 
+
+
 @Injectable()
 export class AuthService {
-  currentUser: User;
-  
-  constructor(private modymService: ModymService){}
-  
+  currentUser: UserAuthenticationResponse;
+
+  constructor(private modymService: ModymService) { }
+
   public login(credentials) {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
-      return Observable.create(observer => {
-        // At this point make a request to your backend to make a real check!
-        let access = (credentials.password === "pass" && credentials.email === "email");
-        this.currentUser = new User('Simon', 'saimon@devdactic.com');
-        observer.next(access);
-        observer.complete();
-      });
+      
+      var response = this.modymService.postAuthenticate(new UserAuthenticationRequest(credentials.email, credentials.password, this.modymService.globalVars.uuid));
+
+      var sharable = response.share();
+      sharable.subscribe(
+        (user: UserAuthenticationResponse) => {
+          this.currentUser = user;
+          this.modymService.globalVars.userToken= user.token;
+        });
+      return response;
     }
   }
- 
+
   public register(credentials) {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
@@ -45,11 +41,11 @@ export class AuthService {
       });
     }
   }
- 
-  public getUserInfo() : User {
+
+  public getUserInfo(): UserAuthenticationResponse {
     return this.currentUser;
   }
- 
+
   public logout() {
     return Observable.create(observer => {
       this.currentUser = null;
