@@ -14,6 +14,9 @@ import { RegisterPage } from '../pages/register/register';
 import { LoadingPage } from '../pages/loading/loading';
 import { ErrorPage } from '../pages/error/error';
 
+import { TransactionsPage } from '../pages/transactions/transactions';
+import { PurchasesPage } from '../pages/purchases/purchases';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +25,9 @@ import { ErrorPage } from '../pages/error/error';
     LoginPage,
     RegisterPage,
     LoadingPage,
-    ErrorPage
+    ErrorPage,
+    TransactionsPage,
+    PurchasesPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -34,7 +39,9 @@ import { ErrorPage } from '../pages/error/error';
     LoginPage,
     RegisterPage,
     LoadingPage,
-    ErrorPage
+    ErrorPage,
+    TransactionsPage,
+    PurchasesPage
   ],
   providers: [
     AuthService,

@@ -1,14 +1,14 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-header> <ion-navbar>
+ <button ion-button menuToggle>
+  <ion-icon name="menu"></ion-icon>
+</button>
+<ion-title> Home </ion-title> </ion-navbar> </ion-header>
 
-<ion-content   [style.background-color]="globalVars.getBgColor()" padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content [style.background-color]="globalVars.getBgColor()" padding>
+{{authService.currentUser.firstName}} {{authService.currentUser.lastName}}
+
+
+<p>{{authService.currentUser.availablePoints}}</p>
+<p>Reward Points</p>
+<p>{{authService.currentUser.availablePointsValue}} {{authService.currentUser.pointValueCurrency}}</p>
 </ion-content>

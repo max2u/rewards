@@ -35,12 +35,11 @@ export class LoginPage {
 
     this.auth.login(this.registerCredentials)
       .catch((error: any) => {
+        debugger;
         return Observable.of(error);
       })
       .subscribe(resp => {
-        debugger;
         if (resp && resp.token) {
-          debugger;
           setTimeout(() => {
             this.loading.dismiss();
             this.nav.setRoot(HomePage)

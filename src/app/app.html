@@ -1,1 +1,23 @@
-<ion-nav [root]="rootPage" class="root-page"  [style.background-color]="globalVars.getBgColor()"  ></ion-nav>
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>{{globalVars.config ? globalVars.config.headLine : 'Menu'}}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon name="{{p.icon}}"></ion-icon> {{p.title}}
+      </button>
+      
+      <button menuClose ion-item (click)="logout()">
+        <ion-icon name="exit"></ion-icon> Logout
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" class="root-page"  #content swipeBackEnabled="false" [style.background-color]="globalVars.getBgColor()"  ></ion-nav>

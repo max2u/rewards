@@ -1,3 +1,4 @@
+import { AuthService } from '../../providers/auth-service';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { GlobalVars } from '../../providers/global-vars';
@@ -9,8 +10,10 @@ import { GlobalVars } from '../../providers/global-vars';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, protected globalVars: GlobalVars) {
-
-  }
+  constructor(
+    public navCtrl: NavController,
+    protected globalVars: GlobalVars,
+    protected authService: AuthService
+  ) { }
 
 }
