@@ -2,6 +2,7 @@ import { UserAuthenticationRequest } from '../modym/request/UserAuthenticationRe
 import { UserPreRegisterRequest } from '../modym/request/UserPreRegisterRequest';
 import { UserRegisterRequest } from '../modym/request/UserRegisterRequest';
 import { UserVerificationRequest } from '../modym/request/UserVerificationRequest';
+import { AuthorizationCodeResponse } from '../modym/response/AuthorizationCodeResponse';
 import { ConfigResponse } from '../modym/response/ConfigResponse';
 import { PageResponse } from '../modym/response/PageRespponse';
 import { PurchaseResponse } from '../modym/response/PurchaseResponse';
@@ -82,6 +83,18 @@ export class ModymService {
 
   public getTransactionPage(page : number, pageSize: number) : Observable<PageResponse<PointTransactionResponse>> {
     return this.http.get(this.getUrl() + '/user/transactions?page='+(page ? page : 0) + '&size=' +(pageSize ? pageSize : 10) , this.getRequestOptions())
+      .map((res: Response) => {
+        return res.json().result;
+      })
+      .catch((res: any) => {
+        var error = (res.status != 401 ? 'Request has failed : ' : '') + (res.json() && res.json().error ? res.json().error : res);
+        return Observable.throw(error);
+      });
+  }
+  
+  
+  public generateVerificationCode() : Observable<AuthorizationCodeResponse> {
+    return this.http.post(this.getUrl() + '/user/verification-code', null , this.getRequestOptions())
       .map((res: Response) => {
         return res.json().result;
       })
