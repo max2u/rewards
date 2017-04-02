@@ -11,6 +11,6 @@ import { LoginPage } from '../login/login';
 export class LoadingPage {
   constructor(public navCtrl: NavController, public modymService: ModymService, protected globalVars: GlobalVars) {
     //when getting the config done, redirect to the login page
-    this.modymService.getConfig(this.navCtrl).subscribe(data => this.navCtrl.push(LoginPage));
+    this.modymService.getConfig(this.navCtrl).subscribe(data => this.navCtrl.setRoot(LoginPage));
   }
 }

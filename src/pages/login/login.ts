@@ -42,12 +42,7 @@ export class LoginPage {
   public login() {
     this.showLoading()
 
-    this.auth.login(this.registerCredentials)
-      .catch((error: any) => {
-        debugger;
-        return Observable.of(error);
-      })
-      .subscribe(resp => {
+    this.auth.login(this.registerCredentials).subscribe(resp => {
         if (resp && resp.token) {
           setTimeout(() => {
             this.loading.dismiss();
@@ -59,7 +54,6 @@ export class LoginPage {
         }
       },
       error => {
-        debugger;
         this.showError(error);
       });
   }
