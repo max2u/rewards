@@ -11,6 +11,10 @@
         <ion-icon name="{{p.icon}}"></ion-icon> {{p.title}}
       </button>
       
+      <button menuClose ion-item (click)="generateVerificationCode()">
+        <ion-icon name="add"></ion-icon> new PIN Code
+      </button>
+      
       <button menuClose ion-item (click)="logout()">
         <ion-icon name="exit"></ion-icon> Logout
       </button>
