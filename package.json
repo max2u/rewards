@@ -1,7 +1,7 @@
 {
-  "name": "ionic-hello-world",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "lemon-rewards",
+  "author": "Lemon restaurant",
+  "homepage": "https://www.facebook.com/LEMONPalestine/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -52,5 +52,5 @@
       "locator": "ios"
     }
   ],
-  "description": "Rewards: An Ionic project"
+  "description": "Lemon Rewards app"
 }
