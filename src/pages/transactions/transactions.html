@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar  color="{{globalVars.getColor()}}">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -8,17 +8,30 @@
 </ion-header>
 
 
-<ion-content [style.background-color]="globalVars.getBgColor()">
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-left></ion-icon>
-      {{item.title}}
+<ion-content>
+  
+  <ion-list *ngIf="itemPage && itemPage.content">
+    <button ion-item *ngFor="let item of itemPage.content" (click)="itemTapped($event, item)">
+      <ion-icon name="ribbon" item-left></ion-icon>
+      <span *ngIf="item.type != 'debit'" >
+        +
+      </span>
+      <span *ngIf="item.type == 'debit'" >
+        -
+      </span>
+      {{item.points}} points
+      
+      
       <div class="item-note" item-right>
-        {{item.note}}
+        {{item.timestamp | date: 'dd/MM/yyyy'}}  
       </div>
+      
+      
     </button>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
+  <div *ngIf="itemPage" >
+    <button *ngIf="hasPrevious()" (click)="prevPage()"><ion-icon name="arrow-back" item-left></ion-icon></button>
+    Page {{itemPage.page + 1}} of {{itemPage.totalPages}} 
+    <button *ngIf="hasNext()" (click)="nextPage()"><ion-icon name="arrow-forward" item-left></ion-icon></button>
   </div>
 </ion-content>

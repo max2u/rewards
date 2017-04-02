@@ -12,8 +12,21 @@ import { GlobalVars } from '../../providers/global-vars';
   templateUrl: 'error.html'
 })
 export class ErrorPage {
+  
+  error : string;
+  errorCode : number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,protected globalVars: GlobalVars) {
+    this.error = navParams.get('error');
+    this.errorCode = navParams.get('errorCode');
   }
-
+  
+  
+  notOldVersion() : boolean {
+    return !this.errorCode || this.errorCode != 153;
+  }
+  
+  oldVersion() : boolean {
+    return this.errorCode && this.errorCode == 153;
+  }
 }

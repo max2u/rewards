@@ -1,4 +1,4 @@
-import { HomePage } from '../pages/home/home';
+
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { GlobalVars } from '../providers/global-vars';
@@ -7,9 +7,12 @@ import { Device } from 'ionic-native'
 import { LoadingPage } from '../pages/loading/loading';
 import { LoginPage } from '../pages/login/login';
 
+import { HomePage } from '../pages/home/home';
 import { TransactionsPage } from '../pages/transactions/transactions';
 import { PurchasesPage } from '../pages/purchases/purchases';
 import { AuthService } from '../providers/auth-service';
+import { AccountPage } from '../pages/account/account';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -27,7 +30,8 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage , icon: 'home'},
       { title: 'Purchases', component: PurchasesPage , icon: 'cart' },
-      { title: 'Transactions', component: TransactionsPage , icon: 'ribbon' }
+      { title: 'Transactions', component: TransactionsPage , icon: 'ribbon' },
+      { title: 'My Account', component: AccountPage , icon: 'person' }
     ];
 
     platform.ready().then(() => {

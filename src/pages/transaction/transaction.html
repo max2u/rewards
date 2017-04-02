@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="{{globalVars.getColor()}}">
+    <ion-title>Transaction Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <ion-row>
+      <ion-col>points</ion-col>
+      <ion-col col-9 col-md-8 col-sm-7 col-xs-6><b>{{transaction.points}}</b></ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col>status</ion-col>
+      <ion-col col-9 col-md-8 col-sm-7 col-xs-6><b>{{transaction.status}}</b></ion-col>
+    </ion-row>
+  
+    <ion-row>
+      <ion-col>value</ion-col>
+      <ion-col col-9 col-md-8 col-sm-7 col-xs-6><b>{{transaction.pointValue}} {{transaction.pointValueCurrency}}</b></ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col>note</ion-col>
+      <ion-col col-9 col-md-8 col-sm-7 col-xs-6><b>{{transaction.note}}</b></ion-col>
+    </ion-row>
+  
+    <span *ngIf="transaction.type != 'debit'">  
+      <ion-row>
+        <ion-col>expiration</ion-col>
+        <ion-col col-9 col-md-8 col-sm-7 col-xs-6><b>{{transaction.expiration | date: 'dd/MM/yyyy'}}</b></ion-col>
+      </ion-row>
+    </span>
+  
+    <ion-row>
+      <ion-col>date</ion-col>
+      <ion-col col-9 col-md-8 col-sm-7 col-xs-6><b>{{transaction.timestamp | date: 'dd/MM/yyyy HH:mm'}}</b></ion-col>
+    </ion-row>
+  </div>
+</ion-content>

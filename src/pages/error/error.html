@@ -1,13 +1,17 @@
-<ion-content class="error-content"   [style.background-color]="globalVars.getBgColor()" padding>
+<ion-content class="error-content" >
   <ion-row class="header-row">
     <ion-col></ion-col>
-    <ion-col width-67>
-      <p class="header-text"> Something went wrong! {{globalVars.getBgColor()}} </p>
+    <ion-col>
+      <p class="header-text"> Something went wrong! </p>
     </ion-col>
     <ion-col></ion-col>
   </ion-row>
-  <div class="dark-box">
+  <div  *ngIf="notOldVersion()" class="dark-box">
     <p>pleases try again later</p>
-    <code> error : {{globalVars.errorMessage}}<br><br></code>
+    <code> error : {{error}}<br><br></code>
+  </div>
+  
+  <div  *ngIf="oldVersion()" class="dark-box">
+    <p>App version is too old, please update.</p>
   </div>
 </ion-content>

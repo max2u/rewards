@@ -1,5 +1,10 @@
-import { UserAuthenticationResponse } from '../modym/UserAuthenticationResponse';
 import { UserAuthenticationRequest } from '../modym/request/UserAuthenticationRequest';
+import { UserPreRegisterRequest } from '../modym/request/UserPreRegisterRequest';
+import { UserVerificationRequest } from '../modym/request/UserVerificationRequest';
+import { UserRegisterRequest } from '../modym/request/UserRegisterRequest';
+import { UserAuthenticationResponse } from '../modym/response/UserAuthenticationResponse';
+import { UserPreRegisterResponse } from '../modym/response/UserPreRegisterResponse';
+import { UserVerificationResponse } from '../modym/response/UserVerificationResponse';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { ModymService } from './modym-service';
@@ -17,28 +22,42 @@ export class AuthService {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
-      
+
       var response = this.modymService.postAuthenticate(new UserAuthenticationRequest(credentials.email, credentials.password, this.modymService.globalVars.uuid));
 
       var sharable = response.share();
       sharable.subscribe(
         (user: UserAuthenticationResponse) => {
           this.currentUser = user;
-          this.modymService.globalVars.userToken= user.token;
+          this.modymService.globalVars.userToken = user.token;
         });
       return response;
     }
   }
 
-  public register(credentials) {
+  public preregister(preregister): Observable<UserPreRegisterResponse> {
+    if (!preregister.email || !preregister.phone) {
+      return Observable.throw("Please insert email and phone");
+    } else {
+      // At this point store the credentials to your backend!
+      return this.modymService.postPreregister(new UserPreRegisterRequest(preregister.email, preregister.phone, this.modymService.globalVars.uuid));
+    }
+  }
+
+  public verify(code: string, id: string): Observable<UserVerificationResponse> {
+    if (!code) {
+      return Observable.throw("Please insert verification code");
+    } else if (!id) {
+      return Observable.throw("Invalid verification identifier");
+    } else {
+      return this.modymService.postVerify(new UserVerificationRequest(code,id, this.modymService.globalVars.uuid));
+    }
+  }
+  public register(credentials: UserRegisterRequest) {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
-      // At this point store the credentials to your backend!
-      return Observable.create(observer => {
-        observer.next(true);
-        observer.complete();
-      });
+      return this.modymService.postRegister(credentials);
     }
   }
 

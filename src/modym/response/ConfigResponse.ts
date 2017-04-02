@@ -3,10 +3,14 @@
 export class ConfigResponse {
   public name : string;
   public headLine : string;
+  
+  public menuLabel: string;
 
-  public primaryColor : string;
   public logoImage : string;
   public backgroundImage : string;
+  
+  public textColor : string;
+  public backgroundColor : string;
 
   public emailRequired : boolean;
   public phoneRequired : boolean;

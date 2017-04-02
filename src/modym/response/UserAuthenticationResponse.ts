@@ -35,4 +35,15 @@ export class UserAuthenticationResponse {
 
   totalPendingCreditPoints: number;
   totalAuthorizedDebitPoints: number;
+  
+  cards : CardData[];
+}
+
+
+class CardData{
+  cardNumber : string;
+  nameOnCard : string;
+  issued: Date;
+  levelName : string;
+  levelImage : string;
 }

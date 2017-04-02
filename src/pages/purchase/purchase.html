@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="{{globalVars.getColor()}}">
+    <ion-title>Purchase Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  
+   <div *ngIf="purchase" padding>
+   <ion-row>
+    id <b>{{purchase.purchaseId}}</b>
+    </ion-row>
+    <ion-row>
+    source <b>{{purchase.sourceName}}</b>
+    </ion-row>
+    <ion-row>
+    on <b>{{purchase.purchaseDate | date: 'dd/MM/yyyy HH:mm'}}</b>
+    </ion-row>
+  </div>
+</ion-content>

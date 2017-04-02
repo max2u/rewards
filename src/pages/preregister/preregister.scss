@@ -1,7 +1,6 @@
-page-login {
- 
+page-preregister {
   .login-content {
-
+ 
     .login-box {
       background: rgba(238, 238, 238, .5);
       padding: 20px 20px 0px 20px;
@@ -14,13 +13,13 @@ page-login {
      }
  
      ion-item {
-         /* border-radius: 30px !important;
-         padding-left: 30px !important; */
-         /* font-size: 0.9em; */
+         border-radius: 30px !important;
+         padding-left: 30px !important;
+         font-size: 0.9em;
          margin-bottom: 10px;
-         /* border: 1px solid #ffffff;
+         border: 1px solid #ffffff;
          border-bottom: 0px !important;
-         box-shadow: none !important; */
+         box-shadow: none !important;
      }
  
      .signup-col {
@@ -38,11 +37,5 @@ page-login {
        border-radius: 30px !important;
        border: 1px solid #ffffff;
      }
- 
-     .register-btn {
-       color: #ffffff;
-       font-size: 0.8em;
-     }
   }
- 
 }

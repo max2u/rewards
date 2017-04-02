@@ -1,8 +1,10 @@
+import { UserRegisterRequest } from '../../modym/request/UserRegisterRequest';
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { GlobalVars } from '../../providers/global-vars';
 import { ModymService } from '../../providers/modym-service';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-register',
@@ -10,19 +12,27 @@ import { ModymService } from '../../providers/modym-service';
 })
 export class RegisterPage {
   createSuccess = false;
-  registerCredentials = { email: '', password: '' };
+  registerCredentials: UserRegisterRequest;
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, protected globalVars: GlobalVars, private modymService: ModymService) { }
+  constructor(private nav: NavController, private navParams: NavParams, private auth: AuthService, private alertCtrl: AlertController, protected globalVars: GlobalVars, private modymService: ModymService) {
+    this.registerCredentials = new UserRegisterRequest();
+    this.registerCredentials.id = navParams.get("id");
+    this.registerCredentials.email = navParams.get("email");
+    this.registerCredentials.phone = navParams.get("phone");
+    this.registerCredentials.gender = "UNSPECIFIED";
+  }
 
   public register() {
-    this.auth.register(this.registerCredentials).subscribe(success => {
-      if (success) {
-        this.createSuccess = true;
-        this.showPopup("Success", "Account created.");
-      } else {
-        this.showPopup("Error", "Problem creating account.");
-      }
-    },
+    this.auth.register(this.registerCredentials).subscribe(response => {
+        if (!response) {
+          this.showPopup("Error", "Problem creating account.");
+        } else if (typeof response !== 'string'){
+          this.createSuccess = true;
+          this.showPopup("Success", "Account created.");
+        } else {
+          this.showPopup("Error", response);
+        }
+      },
       error => {
         this.showPopup("Error", error);
       });
@@ -37,7 +47,10 @@ export class RegisterPage {
           text: 'OK',
           handler: data => {
             if (this.createSuccess) {
-              this.nav.popToRoot();
+              this.nav.setRoot(LoginPage, {
+                username: this.registerCredentials.email,
+                password: this.registerCredentials.password
+              });
             }
           }
         }

@@ -16,7 +16,20 @@ import { ErrorPage } from '../pages/error/error';
 
 import { TransactionsPage } from '../pages/transactions/transactions';
 import { PurchasesPage } from '../pages/purchases/purchases';
+import { AccountPage } from '../pages/account/account';
+import { PreRegisterPage } from '../pages/preregister/preregister';
+import { PurchasePage } from '../pages/purchase/purchase';
+import { TransactionPage } from '../pages/transaction/transaction';
+import { VerifyPage } from '../pages/verify/verify';
 
+import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
+
+const cloudSettings: CloudSettings = {
+  'core': {
+    'app_id': '1678c281'
+  }
+};
+//
 
 @NgModule({
   declarations: [
@@ -27,10 +40,16 @@ import { PurchasesPage } from '../pages/purchases/purchases';
     LoadingPage,
     ErrorPage,
     TransactionsPage,
-    PurchasesPage
+    PurchasesPage,
+    AccountPage,
+    PurchasePage,
+    PreRegisterPage,
+    VerifyPage,
+    TransactionPage
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    CloudModule.forRoot(cloudSettings)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,7 +60,12 @@ import { PurchasesPage } from '../pages/purchases/purchases';
     LoadingPage,
     ErrorPage,
     TransactionsPage,
-    PurchasesPage
+    PurchasesPage,
+    AccountPage,
+    PurchasePage,
+    PreRegisterPage,
+    VerifyPage,
+    TransactionPage
   ],
   providers: [
     AuthService,

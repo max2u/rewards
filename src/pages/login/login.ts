@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController, Loading } from 'ionic-angular';
 
 import { AuthService } from '../../providers/auth-service';
 import { GlobalVars } from '../../providers/global-vars';
 import { ModymService } from '../../providers/modym-service';
 import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
+import { PreRegisterPage } from '../preregister/preregister';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 
@@ -19,14 +20,22 @@ export class LoginPage {
   registerCredentials = { email: '', password: '' };
 
   constructor(private nav: NavController,
+    private navParams: NavParams,
     private auth: AuthService,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     protected globalVars: GlobalVars,
     protected modymService: ModymService,
-  ) { }
+  ) { 
+    this.registerCredentials.email = navParams.get("username");
+    this.registerCredentials.password= navParams.get("password");
+  }
 
   public createAccount() {
+    this.nav.push(PreRegisterPage);
+  }
+  
+  public forgotPassword(){
     this.nav.push(RegisterPage);
   }
 

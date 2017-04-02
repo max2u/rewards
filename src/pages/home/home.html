@@ -1,14 +1,24 @@
-<ion-header> <ion-navbar>
+
+<ion-header> 
+<ion-navbar color="{{globalVars.getColor()}}">
  <button ion-button menuToggle>
   <ion-icon name="menu"></ion-icon>
 </button>
-<ion-title> Home </ion-title> </ion-navbar> </ion-header>
+<ion-title> Home </ion-title> 
+</ion-navbar>
+</ion-header>
 
-<ion-content [style.background-color]="globalVars.getBgColor()" padding>
-{{authService.currentUser.firstName}} {{authService.currentUser.lastName}}
+<ion-content *ngIf="authService.getUserInfo()" padding>
 
+  
+  {{authService.getUserInfo().firstName}} {{authService.getUserInfo().lastName}}
+  
+  
+  <p>{{authService.getUserInfo().availablePoints}}</p>
+  <p>Reward Points</p>
+  <p>{{authService.getUserInfo().availablePointsValue}} {{authService.getUserInfo().pointValueCurrency}}</p>
+</ion-content>
 
-<p>{{authService.currentUser.availablePoints}}</p>
-<p>Reward Points</p>
-<p>{{authService.currentUser.availablePointsValue}} {{authService.currentUser.pointValueCurrency}}</p>
+<ion-content *ngIf="!authService.getUserInfo()" padding>
+  really ?
 </ion-content>
