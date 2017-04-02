@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ModymService } from '../../providers/modym-service';
-import { GlobalVars } from '../../providers/global-vars';
+import { Config } from '../../providers/config';
 import { LoginPage } from '../login/login';
 
 @Component({
@@ -9,7 +9,7 @@ import { LoginPage } from '../login/login';
   templateUrl: 'loading.html'
 })
 export class LoadingPage {
-  constructor(public navCtrl: NavController, public modymService: ModymService, protected globalVars: GlobalVars) {
+  constructor(public navCtrl: NavController, public modymService: ModymService, protected config: Config) {
     //when getting the config done, redirect to the login page
     this.modymService.getConfig(this.navCtrl).subscribe(data => this.navCtrl.setRoot(LoginPage));
   }

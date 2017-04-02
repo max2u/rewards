@@ -1,10 +1,10 @@
 <ion-header>
-  <ion-navbar  color="{{globalVars.getColor()}}">
+  <ion-navbar  color="{{config.getColor()}}">
     <ion-title>Register</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="login-content" [ngStyle]="{'background-image': 'url(' + globalVars.getBgImage() + ')', 'background-size': 'cover','background-repeat': 'no-repeat'}" padding>
+<ion-content class="login-content" [ngStyle]="{'background-image': 'url(' + config.getBgImage() + ')', 'background-size': 'cover','background-repeat': 'no-repeat'}" padding>
   <div class="login-box">
     
     <form (ngSubmit)="register()" #registerForm="ngForm">
@@ -12,7 +12,7 @@
         <ion-col>
           <ion-list inset>
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+              <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
             </ion-item>
             
             <ion-item>
@@ -25,7 +25,7 @@
       
       <ion-row>
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Next</button>
+          <button ion-button class="submit-btn"  color="{{config.getButtonColor()}}" full type="submit" [disabled]="!registerForm.form.valid">Next</button>
         </ion-col>
       </ion-row>
       

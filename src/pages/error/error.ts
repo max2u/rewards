@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { GlobalVars } from '../../providers/global-vars';
+import { Config } from '../../providers/config';
 /*
   Generated class for the Error page.
 
@@ -16,7 +16,7 @@ export class ErrorPage {
   error : string;
   errorCode : number;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,protected globalVars: GlobalVars) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,protected config: Config) {
     this.error = navParams.get('error');
     this.errorCode = navParams.get('errorCode');
   }

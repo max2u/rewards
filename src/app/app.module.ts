@@ -5,7 +5,7 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AuthService } from '../providers/auth-service';
-import { GlobalVars } from '../providers/global-vars';
+import { Config } from '../providers/config';
 import { ModymService } from '../providers/modym-service'
 
 import { HomePage } from '../pages/home/home';
@@ -69,7 +69,7 @@ const cloudSettings: CloudSettings = {
   ],
   providers: [
     AuthService,
-    GlobalVars,
+    Config,
     ModymService
   ]
 })

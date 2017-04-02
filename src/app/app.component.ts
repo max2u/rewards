@@ -1,7 +1,7 @@
 
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
-import { GlobalVars } from '../providers/global-vars';
+import { Config } from '../providers/config';
 import { Device } from 'ionic-native'
 
 import { LoadingPage } from '../pages/loading/loading';
@@ -24,7 +24,7 @@ export class MyApp {
   pages: Array<{ title: string, component: any, icon : string }>;
 
 
-  constructor(platform: Platform, protected globalVars: GlobalVars, private authService: AuthService) {
+  constructor(platform: Platform, protected config: Config, protected authService: AuthService) {
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -35,7 +35,7 @@ export class MyApp {
     ];
 
     platform.ready().then(() => {
-      this.globalVars.uuid = Device.uuid || this.newGuid();
+      this.config.uuid = Device.uuid || this.newGuid();
     });
   }
 

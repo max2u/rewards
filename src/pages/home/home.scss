@@ -1,3 +1,30 @@
 page-home {
-
+	
+	ion-row{
+	  border-bottom: 1px dashed #ccc;
+	  padding-bottom: 10px;
+	  padding-top: 10px;
+	}
+	
+  .item-label, .item-value{
+    font-size:1.2em;
+    display: block;
+  }
+  
+  .item-label.lg,  .item-value.lg{
+    font-size:1.6em;
+    display: block;
+  }
+  
+  .right-separator{
+    border-right: 3px solid;
+    padding-right: 10px;
+  }
+  .left-padding{
+    padding-left: 10px;
+  }
+  
+  .level-image{
+    max-height: 15em;
+  }
 }

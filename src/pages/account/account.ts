@@ -1,7 +1,7 @@
 import { AuthService } from '../../providers/auth-service';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { GlobalVars } from '../../providers/global-vars';
+import { Config } from '../../providers/config';
 
 
 @Component({
@@ -12,7 +12,7 @@ export class AccountPage {
 
   constructor(
     public navCtrl: NavController,
-    protected globalVars: GlobalVars,
+    protected config: Config,
     protected authService: AuthService
   ) { }
 

@@ -2,7 +2,7 @@ import { UserRegisterRequest } from '../../modym/request/UserRegisterRequest';
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import { GlobalVars } from '../../providers/global-vars';
+import { Config } from '../../providers/config';
 import { ModymService } from '../../providers/modym-service';
 import { LoginPage } from '../login/login';
 
@@ -14,7 +14,7 @@ export class RegisterPage {
   createSuccess = false;
   registerCredentials: UserRegisterRequest;
 
-  constructor(private nav: NavController, private navParams: NavParams, private auth: AuthService, private alertCtrl: AlertController, protected globalVars: GlobalVars, private modymService: ModymService) {
+  constructor(private nav: NavController, private navParams: NavParams, private auth: AuthService, private alertCtrl: AlertController, protected config: Config, private modymService: ModymService) {
     this.registerCredentials = new UserRegisterRequest();
     this.registerCredentials.id = navParams.get("id");
     this.registerCredentials.email = navParams.get("email");

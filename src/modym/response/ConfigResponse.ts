@@ -8,9 +8,6 @@ export class ConfigResponse {
 
   public logoImage : string;
   public backgroundImage : string;
-  
-  public textColor : string;
-  public backgroundColor : string;
 
   public emailRequired : boolean;
   public phoneRequired : boolean;
@@ -23,4 +20,13 @@ export class ConfigResponse {
 
   public privacyPolicy : string;
   public userAgreement : string;
+  
+  
+  
+  public textColor : string;
+  public loyaltyTextColor: string;
+  
+  public backgroundColor : string;
+  public buttonColor : string;
+  
 }

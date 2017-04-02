@@ -1,6 +1,6 @@
 import { PageResponse } from '../../modym/response/PageRespponse';
 import { PurchaseResponse } from '../../modym/response/PurchaseResponse';
-import { GlobalVars } from '../../providers/global-vars';
+import { Config } from '../../providers/config';
 import { ModymService } from '../../providers/modym-service';
 import { PurchasePage } from '../purchase/purchase';
 import { Component } from '@angular/core';
@@ -28,7 +28,7 @@ export class PurchasesPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    protected globalVars: GlobalVars,
+    protected config: Config,
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private modymService: ModymService) {

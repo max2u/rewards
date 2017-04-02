@@ -22,16 +22,7 @@ export class AuthService {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
     } else {
-
-      var response = this.modymService.postAuthenticate(new UserAuthenticationRequest(credentials.email, credentials.password, this.modymService.globalVars.uuid));
-
-      var sharable = response.share();
-      sharable.subscribe(
-        (user: UserAuthenticationResponse) => {
-          this.currentUser = user;
-          this.modymService.globalVars.userToken = user.token;
-        });
-      return response;
+      return this.modymService.postAuthenticate(new UserAuthenticationRequest(credentials.email, credentials.password, this.modymService.config.uuid));
     }
   }
 
@@ -40,7 +31,7 @@ export class AuthService {
       return Observable.throw("Please insert email and phone");
     } else {
       // At this point store the credentials to your backend!
-      return this.modymService.postPreregister(new UserPreRegisterRequest(preregister.email, preregister.phone, this.modymService.globalVars.uuid));
+      return this.modymService.postPreregister(new UserPreRegisterRequest(preregister.email, preregister.phone, this.modymService.config.uuid));
     }
   }
 
@@ -50,7 +41,7 @@ export class AuthService {
     } else if (!id) {
       return Observable.throw("Invalid verification identifier");
     } else {
-      return this.modymService.postVerify(new UserVerificationRequest(code,id, this.modymService.globalVars.uuid));
+      return this.modymService.postVerify(new UserVerificationRequest(code,id, this.modymService.config.uuid));
     }
   }
   public register(credentials: UserRegisterRequest) {

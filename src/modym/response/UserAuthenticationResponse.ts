@@ -18,6 +18,7 @@ export class UserAuthenticationResponse {
   lastPurchase: any;
 
   levelName: string;
+  levelImage: string;
 
   pointValueCurrency: string;
 

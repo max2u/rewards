@@ -1,7 +1,7 @@
-<ion-menu [content]="content">
+<ion-menu *ngIf="authService.currentUser" [content]="content">
   <ion-header >
-    <ion-toolbar color="{{globalVars.getColor()}}" >
-      <ion-title  >{{globalVars.config ? globalVars.config.headLine : 'Menu'}}</ion-title>
+    <ion-toolbar color="{{config.getColor()}}" >
+      <ion-title  >{{config.config ? config.config.headLine : 'Menu'}}</ion-title>
     </ion-toolbar>
   </ion-header>
 

@@ -2,7 +2,7 @@ import { ConfigResponse } from '../modym/response/ConfigResponse';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class GlobalVars {
+export class Config {
   env: string;
   client: string;
   apiVersion: string;
@@ -27,6 +27,10 @@ export class GlobalVars {
     return (this.config && this.config.backgroundColor ? this.config.backgroundColor : 'primary');  
   }
 
+  public getButtonColor() {
+    return (this.config && this.config.buttonColor ? this.config.buttonColor : 'primary');  
+  }
+  
   public getLogoImage() {
     return this.config ? this.config.logoImage : '';
   }
@@ -34,4 +38,13 @@ export class GlobalVars {
   public getBgImage() {
     return this.config ? this.config.backgroundImage : '';
   }
+  
+  
+  public getLoyaltyTextColot() {
+    return (this.config && this.config.loyaltyTextColor ? this.config.loyaltyTextColor : '#000'); 
+  }
+  
+  
+  
+  
 }

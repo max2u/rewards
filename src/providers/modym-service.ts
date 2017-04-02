@@ -11,7 +11,7 @@ import { UserVerificationResponse } from '../modym/response/UserVerificationResp
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { GlobalVars } from './global-vars';
+import { Config } from './config';
 import { NavController } from "ionic-angular/index";
 import { ErrorPage } from '../pages/error/error';
 import 'rxjs/add/operator/catch';
@@ -22,19 +22,19 @@ import 'rxjs/add/operator/catch';
 export class ModymService {
 
 
-  constructor(private http: Http, public globalVars: GlobalVars) { }
+  constructor(private http: Http, public config: Config) { }
 
   /** 
    * Request headers 
    */
   private getRequestOptions() {
     let headers = new Headers();
-    headers.append('Client', this.globalVars.client);
-    headers.append('Version', this.globalVars.mobileVersion.toString());
+    headers.append('Client', this.config.client);
+    headers.append('Version', this.config.mobileVersion.toString());
     headers.append('Medium', 'Mobile');
 
-    if (this.globalVars.userToken)
-      headers.append('Auth-Token', this.globalVars.userToken);
+    if (this.config.userToken)
+      headers.append('Auth-Token', this.config.userToken);
 
 
     return new RequestOptions(Object.assign({
@@ -48,8 +48,8 @@ export class ModymService {
    */
   public getConfig(navCtrl: NavController): Observable<ConfigResponse> {
 
-    if (this.globalVars.config) {
-      return this.wrapResponse(Observable.of(this.globalVars.config), navCtrl);
+    if (this.config.config) {
+      return this.wrapResponse(Observable.of(this.config.config), navCtrl);
     }
 
     return this.wrapResponse(this.wrapConfigResponse(this.http.get(this.getUrl() + '/config', this.getRequestOptions())
@@ -58,7 +58,7 @@ export class ModymService {
       })
       .catch((error: any) => {
         console.debug('Server error' + (error.json() && error.json().error ? ' : ' + error.json().error : ''));
-        this.globalVars.errorMessage = error.json() && error.json().error ? ' : ' + error.json().error : '';
+        this.config.errorMessage = error.json() && error.json().error ? ' : ' + error.json().error : '';
 
         navCtrl.setRoot(ErrorPage, {
           error: error.json() && error.json().error ? error.json().error : 'Server Error',
@@ -168,7 +168,7 @@ export class ModymService {
     var sharable = response.share();
     sharable.subscribe(
       (data: ConfigResponse) => {
-        this.globalVars.config = data;
+        this.config.config = data;
       });
     return sharable;
   }
@@ -177,22 +177,22 @@ export class ModymService {
   private wrapResponse(response: Observable<any>, navCtrl: NavController): Observable<any> {
     var sharable = response.share();
     sharable.subscribe(null, (error: Response) => {
-      this.globalVars.errorMessage = error.json() && error.json().error ? ' : ' + error.json().error : '';
+      this.config.errorMessage = error.json() && error.json().error ? ' : ' + error.json().error : '';
       navCtrl.push(ErrorPage);
     });
     return sharable;
   }
 
   private getUrl() {
-    if (this.globalVars.env === 'local') {
-      return 'http://' + this.globalVars.client + '.localhost:8880/modym-portal/api/' + this.globalVars.apiVersion;
+    if (this.config.env === 'local') {
+      return 'http://' + this.config.client + '.localhost:8880/modym-portal/api/' + this.config.apiVersion;
     }
-    if (this.globalVars.env === 'local_em') {
-      return 'http://10.0.2.2:8880/modym-portal/api/' + this.globalVars.apiVersion;
+    if (this.config.env === 'local_em') {
+      return 'http://10.0.2.2:8880/modym-portal/api/' + this.config.apiVersion;
     }
-    if (this.globalVars.env === 'local_mobile') {
-      return 'http://10.53.77.117:8880/modym-portal/api/' + this.globalVars.apiVersion;
+    if (this.config.env === 'local_mobile') {
+      return 'http://10.53.77.117:8880/modym-portal/api/' + this.config.apiVersion;
     }
-    return 'https://' + this.globalVars.client + '.rewards.modym.com/api/' + this.globalVars.apiVersion;
+    return 'https://' + this.config.client + '.rewards.modym.com/api/' + this.config.apiVersion;
   }
 }

@@ -1,11 +1,11 @@
-<ion-content class="login-content" [ngStyle]="{'background-image': 'url(' + globalVars.getBgImage() + ')', 'background-size': 'cover','background-repeat': 'no-repeat'}">
+<ion-content class="login-content" [ngStyle]="{'background-image': 'url(' + config.getBgImage() + ')', 'background-size': 'cover','background-repeat': 'no-repeat'}">
   <ion-row class="logo-row">
     <ion-col>
-      <img [src]="globalVars.getLogoImage()"/>
+      <img [src]="config.getLogoImage()"/>
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col [style.color]="globalVars.getTextColor()">
+    <ion-col [style.color]="config.getTextColor()">
       LOGIN TO YOUR ACCOUNT
     </ion-col>
   </ion-row>
@@ -16,7 +16,7 @@
         <ion-col>
           <ion-list >
             <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required>
+              <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required>
               </ion-input>
             </ion-item>
             
@@ -28,17 +28,17 @@
         </ion-col>
       </ion-row>
       
-      <ion-row [style.color]="globalVars.getTextColor()">
+      <ion-row [style.color]="config.getTextColor()">
         <ion-col class="signup-col">
-          <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
+          <button ion-button color="{{config.getButtonColor()}}" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
           
           <!-- <p ion-button class="register-btn" block clear (click)="forgotPassword()" 
-            [style.color]="globalVars.getTextColor()">Forgot Password?</p> -->
+            [style.color]="config.getTextColor()">Forgot Password?</p> -->
             
-            <p [style.color]="globalVars.getTextColor()">
+            <p [style.color]="config.getTextColor()">
             Don't have an account?</p>
           <p ion-button class="register-btn" block clear (click)="createAccount()" 
-            [style.color]="globalVars.getTextColor()">REGISTER NOW</p>
+            [style.color]="config.getTextColor()">REGISTER NOW</p>
         </ion-col>
       </ion-row>
       

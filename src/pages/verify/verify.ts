@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import { GlobalVars } from '../../providers/global-vars';
+import { Config } from '../../providers/config';
 import { ModymService } from '../../providers/modym-service';
 import { RegisterPage } from '../register/register';
 
@@ -15,7 +15,7 @@ export class VerifyPage {
   email: string;
   phone: string;
 
-  constructor(private nav: NavController, private navParams: NavParams, private auth: AuthService, private alertCtrl: AlertController, protected globalVars: GlobalVars, private modymService: ModymService) {
+  constructor(private nav: NavController, private navParams: NavParams, private auth: AuthService, private alertCtrl: AlertController, protected config: Config, private modymService: ModymService) {
     this.id = navParams.get('id');
     this.email = navParams.get('email');
     this.phone = navParams.get('phone');

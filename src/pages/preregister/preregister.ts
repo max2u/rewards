@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
-import { GlobalVars } from '../../providers/global-vars';
+import { Config } from '../../providers/config';
 import { ModymService } from '../../providers/modym-service';
 import { RegisterPage } from '../register/register';
 import { VerifyPage } from '../verify/verify';
@@ -14,7 +14,7 @@ export class PreRegisterPage {
   createSuccess = false;
   registerCredentials = { email: '', phone: '' };
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, protected globalVars: GlobalVars, private modymService: ModymService) { }
+  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, protected config: Config, private modymService: ModymService) { }
 
   public register() {
     debugger;
