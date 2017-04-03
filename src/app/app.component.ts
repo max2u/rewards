@@ -6,12 +6,9 @@ import { Device } from 'ionic-native'
 
 import { LoadingPage } from '../pages/loading/loading';
 import { LoginPage } from '../pages/login/login';
+import { PageConfig } from '../providers/PageConfig';
 
-import { HomePage } from '../pages/home/home';
-import { TransactionsPage } from '../pages/transactions/transactions';
-import { PurchasesPage } from '../pages/purchases/purchases';
 import { AuthService } from '../providers/auth-service';
-import { AccountPage } from '../pages/account/account';
 import { ModymService } from '../providers/modym-service';
 
 
@@ -23,26 +20,15 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage = LoadingPage;
 
-  pages: Array<{ title: string, component: any, icon: string }>;
-
-
   constructor(
     platform: Platform,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     protected config: Config,
     protected authService: AuthService,
-    protected modymService: ModymService
+    protected modymService: ModymService,
+    protected pageConfig: PageConfig
   ) {
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage, icon: 'home' },
-      { title: 'Purchases', component: PurchasesPage, icon: 'cart' },
-      { title: 'Transactions', component: TransactionsPage, icon: 'ribbon' },
-      { title: 'My Account', component: AccountPage, icon: 'person' }
-    ];
-
     platform.ready().then(() => {
       this.config.uuid = Device.uuid || this.newGuid();
     });
