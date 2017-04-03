@@ -10,11 +10,7 @@
       <button menuClose ion-item *ngFor="let p of pageConfig.menuPages" [hidden]="!p.visible" (click)="openPage(p)">
         <ion-icon name="{{p.icon}}"></ion-icon> {{p.title}}
       </button>
-      
-      <button menuClose ion-item (click)="generateVerificationCode()">
-        <ion-icon name="add"></ion-icon> new PIN Code
-      </button>
-      
+
       <button menuClose ion-item (click)="logout()">
         <ion-icon name="exit"></ion-icon> Logout
       </button>

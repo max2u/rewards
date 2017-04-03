@@ -6,7 +6,7 @@ import { AuthService } from '../../providers/auth-service';
 import { Config } from '../../providers/config';
 import { ModymService } from '../../providers/modym-service';
 import { RegisterPage } from '../register/register';
-import { HomePage } from '../home/home';
+import { SummaryPage } from '../summary/summary';
 import { PreRegisterPage } from '../preregister/preregister';
 import 'rxjs/add/operator/catch';
 
@@ -51,7 +51,7 @@ export class LoginPage {
           this.pageConfig.refreshMenuPages(response);
           setTimeout(() => {
             this.loading.dismiss();
-            this.nav.setRoot(HomePage);
+            this.nav.setRoot(SummaryPage);
             
           });
         } else {

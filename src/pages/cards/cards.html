@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-card *ngFor="let card of authService.currentUser.cards">
-    <span *ngIf="card.levelImage" class="content-center">
+    <span [hidden]="!card.levelImage" class="content-center">
       <img class="level-image" src="{{card.levelImage}}"/>
     </span>
     <ion-card-content>

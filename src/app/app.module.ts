@@ -8,7 +8,7 @@ import { AuthService } from '../providers/auth-service';
 import { Config } from '../providers/config';
 import { ModymService } from '../providers/modym-service'
 
-import { HomePage } from '../pages/home/home';
+import { SummaryPage } from '../pages/summary/summary';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { LoadingPage } from '../pages/loading/loading';
@@ -36,7 +36,7 @@ const cloudSettings: CloudSettings = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
+    SummaryPage,
     LoginPage,
     RegisterPage,
     LoadingPage,
@@ -57,7 +57,7 @@ const cloudSettings: CloudSettings = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
+    SummaryPage,
     LoginPage,
     RegisterPage,
     LoadingPage,
