@@ -12,11 +12,13 @@
         <ion-col>
           <ion-list inset>
             <ion-item>
-              <ion-input type="email" placeholder="Email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
+              <ion-label floating>Email</ion-label>
+              <ion-input type="email" name="email" [(ngModel)]="registerCredentials.email" required></ion-input>
             </ion-item>
             
             <ion-item>
-              <ion-input type="text" placeholder="phone" name="phone" [(ngModel)]="registerCredentials.phone" required></ion-input>
+              <ion-label floating>Phone</ion-label>
+              <ion-input type="tel" name="phone"  [(ngModel)]="registerCredentials.phone" required></ion-input>
             </ion-item>
             
           </ion-list>

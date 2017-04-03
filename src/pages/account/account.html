@@ -8,4 +8,66 @@
 </ion-header>
 
 <ion-content>
+
+
+
+  <div class="login-box">
+    <form (ngSubmit)="updateDetails()" #userDetailsForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list >
+            <ion-item>
+              <ion-label floating>First Name</ion-label>
+              <ion-input type="text" name="firstName" [(ngModel)]="userDetails.firstName" required>
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Last Name</ion-label>
+              <ion-input type="text" name="lastName" [(ngModel)]="userDetails.lastName" required>
+              </ion-input>
+            </ion-item>
+            <!-- <ion-item>
+              <ion-label floating>Email</ion-label>
+              <ion-input type="email" name="email" [(ngModel)]="userDetails.email" required>
+              </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label floating>Phone</ion-label>
+              <ion-input type="tel" name="phone" [(ngModel)]="userDetails.phone" required>
+              </ion-input>
+            </ion-item> -->
+            
+            <ion-item>
+              <ion-label floating>Date Of Birth</ion-label>
+              <ion-datetime displayFormat="MMM DD YYYY" name="dateOfBirth" [max]="maxDOB" [min]="1917-01-01" [(ngModel)]="userDetails.dateOfBirth"></ion-datetime>
+            </ion-item>
+    
+            
+            <ion-item>
+              <ion-label floating>Gender</ion-label>
+              <ion-select name="gender" [(ngModel)]="userDetails.gender">
+                <ion-option value="MALE">Male</ion-option>
+                <ion-option value="FEMALE">Femal</ion-option>
+                <ion-option value="UNSPECIFIED">Unspecified</ion-option>
+              </ion-select>
+            </ion-item>
+            
+            
+          </ion-list>
+        </ion-col>
+      </ion-row>
+  
+      <ion-row>
+        <ion-col class="submit-col">
+          <button color="{{config.getColor()}}" ion-button type="submit" [disabled]="!userDetailsForm.valid">Update</button>
+        </ion-col>
+      </ion-row>
+      
+    </form>
+  </div>
+
+
+
+
+
 </ion-content>
