@@ -47,4 +47,6 @@ class CardData{
   issued: Date;
   levelName : string;
   levelImage : string;
+  printed: boolean;
+  active:boolean;
 }

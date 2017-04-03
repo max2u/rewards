@@ -1,3 +1,4 @@
+import { PageConfig } from '../../providers/PageConfig';
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Loading } from 'ionic-angular';
 
@@ -5,7 +6,7 @@ import { AuthService } from '../../providers/auth-service';
 import { Config } from '../../providers/config';
 import { ModymService } from '../../providers/modym-service';
 import { RegisterPage } from '../register/register';
-import { HomePage } from '../home/home';
+import { SummaryPage } from '../summary/summary';
 import { PreRegisterPage } from '../preregister/preregister';
 import 'rxjs/add/operator/catch';
 
@@ -25,6 +26,7 @@ export class LoginPage {
     private loadingCtrl: LoadingController,
     protected config: Config,
     protected modymService: ModymService,
+    private pageConfig: PageConfig
   ) { 
     this.registerCredentials.email = navParams.get("username");
     this.registerCredentials.password= navParams.get("password");
@@ -46,10 +48,11 @@ export class LoginPage {
           
           this.auth.currentUser = response;
           this.modymService.config.userToken = response.token;
-          
+          this.pageConfig.refreshMenuPages(response);
           setTimeout(() => {
             this.loading.dismiss();
-            this.nav.setRoot(HomePage)
+            this.nav.setRoot(SummaryPage);
+            
           });
         } else {
           var message= typeof response === 'string' ?  response : "Access Denied";
