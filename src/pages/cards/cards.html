@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar color="{{config.getColor()}}">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Cards</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let card of authService.currentUser.cards">
+    <span [hidden]="!card.levelImage" class="content-center">
+      <img class="level-image" src="{{card.levelImage}}"/>
+    </span>
+    <ion-card-content>
+      <p>
+        <ion-row>
+          <ion-col col-4 class="attribute">card number</ion-col>
+          <ion-col>{{card.cardNumber}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 class="attribute">issued</ion-col>
+          <ion-col>{{card.issued | date:'MMM dd, yyyy'}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 class="attribute">name on card</ion-col>
+          <ion-col>{{card.nameOnCard}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 class="attribute">card level</ion-col>
+          <ion-col>{{card.levelName}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 class="attribute">printed</ion-col>
+          <ion-col>{{card.printed ? 'Yes' : 'No'}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 class="attribute">active</ion-col>
+          <ion-col>{{card.active ? 'Yes' : 'No'}}</ion-col>
+        </ion-row>
+      </p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

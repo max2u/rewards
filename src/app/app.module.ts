@@ -8,7 +8,7 @@ import { AuthService } from '../providers/auth-service';
 import { Config } from '../providers/config';
 import { ModymService } from '../providers/modym-service'
 
-import { HomePage } from '../pages/home/home';
+import { SummaryPage } from '../pages/summary/summary';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { LoadingPage } from '../pages/loading/loading';
@@ -17,10 +17,12 @@ import { ErrorPage } from '../pages/error/error';
 import { TransactionsPage } from '../pages/transactions/transactions';
 import { PurchasesPage } from '../pages/purchases/purchases';
 import { AccountPage } from '../pages/account/account';
+import { CardsPage } from '../pages/cards/cards';
 import { PreRegisterPage } from '../pages/preregister/preregister';
 import { PurchasePage } from '../pages/purchase/purchase';
 import { TransactionPage } from '../pages/transaction/transaction';
 import { VerifyPage } from '../pages/verify/verify';
+import { PageConfig } from '../providers/PageConfig';
 
 import { CloudSettings, CloudModule } from '@ionic/cloud-angular';
 
@@ -34,7 +36,7 @@ const cloudSettings: CloudSettings = {
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
+    SummaryPage,
     LoginPage,
     RegisterPage,
     LoadingPage,
@@ -45,7 +47,8 @@ const cloudSettings: CloudSettings = {
     PurchasePage,
     PreRegisterPage,
     VerifyPage,
-    TransactionPage
+    TransactionPage,
+    CardsPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -54,7 +57,7 @@ const cloudSettings: CloudSettings = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
+    SummaryPage,
     LoginPage,
     RegisterPage,
     LoadingPage,
@@ -65,12 +68,14 @@ const cloudSettings: CloudSettings = {
     PurchasePage,
     PreRegisterPage,
     VerifyPage,
-    TransactionPage
+    TransactionPage,
+    CardsPage
   ],
   providers: [
     AuthService,
     Config,
-    ModymService
+    ModymService,
+    PageConfig
   ]
 })
 export class AppModule { }

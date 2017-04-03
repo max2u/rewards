@@ -1,4 +1,4 @@
-page-home {
+page-summary {
 	
 	ion-row{
 	  border-bottom: 1px dashed #ccc;
@@ -26,5 +26,9 @@ page-home {
   
   .level-image{
     max-height: 15em;
+  }
+  
+  .generate-code{
+    text-align: center;
   }
 }
