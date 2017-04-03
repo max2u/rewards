@@ -1,15 +1,15 @@
 
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
-import { Config } from '../providers/config';
+import { Config } from '../providers/Config';
 import { Device } from 'ionic-native'
 
 import { LoadingPage } from '../pages/loading/loading';
 import { LoginPage } from '../pages/login/login';
 import { PageConfig } from '../providers/PageConfig';
 
-import { AuthService } from '../providers/auth-service';
-import { ModymService } from '../providers/modym-service';
+import { AuthService } from '../providers/AuthService';
+import { ModymService } from '../providers/ModymService';
 
 
 @Component({

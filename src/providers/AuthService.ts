@@ -7,7 +7,7 @@ import { UserPreRegisterResponse } from '../modym/response/UserPreRegisterRespon
 import { UserVerificationResponse } from '../modym/response/UserVerificationResponse';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { ModymService } from './modym-service';
+import { ModymService } from './ModymService';
 import 'rxjs/add/operator/catch';
 
 

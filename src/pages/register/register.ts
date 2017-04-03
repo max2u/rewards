@@ -1,9 +1,9 @@
 import { UserRegisterRequest } from '../../modym/request/UserRegisterRequest';
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
-import { Config } from '../../providers/config';
-import { ModymService } from '../../providers/modym-service';
+import { AuthService } from '../../providers/AuthService';
+import { Config } from '../../providers/Config';
+import { ModymService } from '../../providers/ModymService';
 import { LoginPage } from '../login/login';
 
 @Component({
@@ -23,6 +23,11 @@ export class RegisterPage {
   }
 
   public register() {
+    if(this.registerCredentials.password != this.registerCredentials.confirmPassword){
+      this.showPopup("Error", "Password confirmation does not match");
+      return;
+    }
+    
     this.auth.register(this.registerCredentials).subscribe(response => {
         if (!response) {
           this.showPopup("Error", "Problem creating account.");

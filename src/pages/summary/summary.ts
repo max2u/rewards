@@ -1,8 +1,8 @@
-import { AuthService } from '../../providers/auth-service';
+import { AuthService } from '../../providers/AuthService';
 import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, Loading } from 'ionic-angular';
-import { Config } from '../../providers/config';
-import { ModymService } from '../../providers/modym-service';
+import { Config } from '../../providers/Config';
+import { ModymService } from '../../providers/ModymService';
 
 
 @Component({
@@ -23,11 +23,11 @@ export class SummaryPage {
   generateVerificationCode() {
     this.showLoading();
     this.modymService.generateVerificationCode().subscribe(result => {
+      this.loading.dismiss();
       this.showPopup("Done", "new verifcation code : <b>" + result.code +"</b>");
     }, error => {
+      this.loading.dismiss();
       this.showPopup("Error", error);
-    }, () => {
-       this.loading.dismiss();
     });
   }
   

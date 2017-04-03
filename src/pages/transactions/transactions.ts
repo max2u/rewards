@@ -1,6 +1,6 @@
 import { PageResponse } from '../../modym/response/PageRespponse';
-import { Config } from '../../providers/config';
-import { ModymService } from '../../providers/modym-service';
+import { Config } from '../../providers/Config';
+import { ModymService } from '../../providers/ModymService';
 import { TransactionPage } from '../transaction/transaction';
 import { Component } from '@angular/core';
 import { NavController, NavParams, Loading, LoadingController, AlertController } from 'ionic-angular';
