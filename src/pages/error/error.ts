@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Config } from '../../providers/config';
+import { Config } from '../../providers/Config';
 /*
   Generated class for the Error page.
 

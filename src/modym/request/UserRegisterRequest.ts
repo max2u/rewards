@@ -6,5 +6,6 @@ export class UserRegisterRequest {
   email: string;
   phone: string;
   password: string;
+  confirmPassword:string;
   gender: string;
 }
