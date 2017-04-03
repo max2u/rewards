@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
-import { Config } from '../../providers/config';
-import { ModymService } from '../../providers/modym-service';
+import { AuthService } from '../../providers/AuthService';
+import { Config } from '../../providers/Config';
+import { ModymService } from '../../providers/ModymService';
 import { RegisterPage } from '../register/register';
 
 @Component({

@@ -1,4 +1,5 @@
 import { UserAuthenticationRequest } from '../modym/request/UserAuthenticationRequest';
+import { UserDetailsUpdateRequest } from '../modym/request/UserDetailsUpdateRequest';
 import { UserPreRegisterRequest } from '../modym/request/UserPreRegisterRequest';
 import { UserRegisterRequest } from '../modym/request/UserRegisterRequest';
 import { UserVerificationRequest } from '../modym/request/UserVerificationRequest';
@@ -7,12 +8,13 @@ import { ConfigResponse } from '../modym/response/ConfigResponse';
 import { PageResponse } from '../modym/response/PageRespponse';
 import { PurchaseResponse } from '../modym/response/PurchaseResponse';
 import { UserAuthenticationResponse } from '../modym/response/UserAuthenticationResponse';
+import { UserDetailsResponse } from '../modym/response/UserDetailsResponse';
 import { UserPreRegisterResponse } from '../modym/response/UserPreRegisterResponse';
 import { UserVerificationResponse } from '../modym/response/UserVerificationResponse';
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Config } from './config';
+import { Config } from './Config';
 import { NavController } from "ionic-angular/index";
 import { ErrorPage } from '../pages/error/error';
 import 'rxjs/add/operator/catch';
@@ -53,7 +55,7 @@ export class ModymService {
       return this.wrapResponse(Observable.of(this.config.config), navCtrl);
     }
 
-    return this.wrapResponse(this.wrapConfigResponse(this.http.get(this.getUrl() + '/config', this.getRequestOptions())
+    return this.wrapResponse(this.wrapConfigResponse(this.http.get(this.getUrl() + '/session/config', this.getRequestOptions())
       .map((res: Response) => {
         return res.json().result;
       })
@@ -104,8 +106,17 @@ export class ModymService {
       });
   }
 
-
-
+  
+  public updateUser( userDetails: UserDetailsUpdateRequest ) : Observable<UserDetailsResponse> {
+    return this.http.post(this.getUrl() + '/user/update', userDetails , this.getRequestOptions())
+      .map((res: Response) => {
+        return res.json().result;
+      })
+      .catch((res: any) => {
+        var error = (res.status != 401 ? 'Request has failed : ' : '') + (res.json() && res.json().error ? res.json().error : res);
+        return Observable.throw(error);
+      });
+  }
 
 
   // ==================================================================================================================
@@ -116,7 +127,7 @@ export class ModymService {
    * authenticate user
    */
   public postAuthenticate(request: UserAuthenticationRequest): Observable<UserAuthenticationResponse> {
-    return this.http.post(this.getUrl() + '/authenticate', request, this.getRequestOptions())
+    return this.http.post(this.getUrl() + '/session/authenticate', request, this.getRequestOptions())
       .map((res: Response) => {
         return res.json().result;
       })
@@ -130,7 +141,7 @@ export class ModymService {
    * pre-register request
    */
   public postPreregister(request: UserPreRegisterRequest): Observable<UserPreRegisterResponse> {
-    return this.http.post(this.getUrl() + '/pre-register', request, this.getRequestOptions())
+    return this.http.post(this.getUrl() + '/session/pre-register', request, this.getRequestOptions())
       .map((res: Response) => {
         return res.json().result;
       })
@@ -145,7 +156,7 @@ export class ModymService {
    * verify request
    */
   public postVerify(request: UserVerificationRequest): Observable<UserVerificationResponse> {
-    return this.http.post(this.getUrl() + '/verify', request, this.getRequestOptions())
+    return this.http.post(this.getUrl() + '/session/verify', request, this.getRequestOptions())
       .map((res: Response) => {
         return res.json().result;
       })
@@ -160,7 +171,7 @@ export class ModymService {
    * registration complete request
    */
   public postRegister(request: UserRegisterRequest): Observable<any> {
-    return this.http.post(this.getUrl() + '/register', request, this.getRequestOptions())
+    return this.http.post(this.getUrl() + '/session/register', request, this.getRequestOptions())
       .map((res: Response) => {
         return res.json().result;
       })

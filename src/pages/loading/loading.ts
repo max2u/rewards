@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ModymService } from '../../providers/modym-service';
-import { Config } from '../../providers/config';
+import { ModymService } from '../../providers/ModymService';
+import { Config } from '../../providers/Config';
 import { LoginPage } from '../login/login';
 
 @Component({

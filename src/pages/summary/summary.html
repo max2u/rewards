@@ -10,39 +10,50 @@
 
 <ion-content padding>
   <ion-row>
-    <ion-col col-4 col-md-6>
-       <span [style.color]="config.getLoyaltyTextColot()" class="item-label">LEVEL</span>
-       <span class="item-value ">{{authService.currentUser.levelName}}</span>
-    </ion-col>
-    <ion-col col-8 col-md-6 class="left-padding">
+    <ion-col col-12 class="center-content" *ngIf="authService.currentUser.levelImage">
        <img class="level-image" src="{{authService.currentUser.levelImage}}" />
+    </ion-col>
+    <ion-col class="center-content" >
+      Name
+       <span class="item-value ">{{authService.currentUser.firstName}} {{authService.currentUser.lastName}}</span>
     </ion-col>
   </ion-row>
   
   <ion-row>
-    <ion-col col-md-6 col-sm-12 [style.borderColor]="config.getLoyaltyTextColot()" class="right-separator" >
+    <ion-col col-md-6>
+       <span [style.color]="config.getLoyaltyTextColot()" class="item-label">LEVEL</span>
+       <span class="item-value ">{{authService.currentUser.levelName}}</span>
+    </ion-col>
+    <ion-col col-md-6>
+       <span [style.color]="config.getLoyaltyTextColot()" class="item-label">PURCHASES</span>
+       <span class="item-value ">{{authService.currentUser.purchaseCount}}</span>
+    </ion-col>
+  </ion-row>
+  
+  <ion-row>
+    <ion-col col-md-6 [style.borderColor]="config.getLoyaltyTextColot()" class="right-separator" >
        <span [style.color]="config.getLoyaltyTextColot()" class="item-label lg">AVAILABLE POINTS</span>
        <span class="item-value lg">{{authService.currentUser.availablePoints}}</span>
     </ion-col>
-    <ion-col col-md-6 col-sm-12 class="left-padding" >
+    <ion-col col-md-6 class="left-padding" >
        <span [style.color]="config.getLoyaltyTextColot()" class="item-label lg">AVAILABLE BALANCE</span>
        <span class="item-value lg">{{authService.currentUser.availablePointsValue}} <small>{{authService.currentUser.pointValueCurrency}}</small></span>
     </ion-col>
   </ion-row>
   
   <ion-row>
-    <ion-col col-md-6 col-sm-12 >
-       <span [style.color]="config.getLoyaltyTextColot()" class="item-label">LIFETIME POINTS</span>
+    <ion-col col-md-6 [style.borderColor]="config.getLoyaltyTextColot()" class="right-separator" >
+       <span [style.color]="config.getLoyaltyTextColot()" class="item-label lg">LIFETIME POINTS</span>
        <span class="item-value">{{authService.currentUser.totalLifetimePoints}}</span>
     </ion-col>
-    <ion-col col-md-6 col-sm-12 class="left-padding">
-       <span [style.color]="config.getLoyaltyTextColot()" class="item-label">LIFETIME BALANCE</span>
+    <ion-col col-md-6 class="left-padding">
+       <span [style.color]="config.getLoyaltyTextColot()" class="item-label lg">LIFETIME BALANCE</span>
        <span class="item-value">{{authService.currentUser.totalLifetimePointsValue}} <small>{{authService.currentUser.pointValueCurrency}}</small></span>
     </ion-col>
   </ion-row>
 
 <ion-row>
-  <ion-col class="generate-code">
+  <ion-col class="center-content">
   <button  color="{{config.getColor()}}" ion-button (click)="generateVerificationCode()">
     <ion-icon name="medal"></ion-icon> Create Redemption PIN
   </button>

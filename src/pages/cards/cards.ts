@@ -1,5 +1,5 @@
-import { AuthService } from '../../providers/auth-service';
-import { Config } from '../../providers/config';
+import { AuthService } from '../../providers/AuthService';
+import { Config } from '../../providers/Config';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 

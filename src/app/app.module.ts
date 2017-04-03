@@ -4,9 +4,9 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 
-import { AuthService } from '../providers/auth-service';
-import { Config } from '../providers/config';
-import { ModymService } from '../providers/modym-service'
+import { AuthService } from '../providers/AuthService';
+import { Config } from '../providers/Config';
+import { ModymService } from '../providers/ModymService'
 
 import { SummaryPage } from '../pages/summary/summary';
 import { LoginPage } from '../pages/login/login';

@@ -1,7 +1,7 @@
 import { PageResponse } from '../../modym/response/PageRespponse';
 import { PurchaseResponse } from '../../modym/response/PurchaseResponse';
-import { Config } from '../../providers/config';
-import { ModymService } from '../../providers/modym-service';
+import { Config } from '../../providers/Config';
+import { ModymService } from '../../providers/ModymService';
 import { PurchasePage } from '../purchase/purchase';
 import { Component } from '@angular/core';
 import { NavController, NavParams, Loading, LoadingController, AlertController } from 'ionic-angular';
