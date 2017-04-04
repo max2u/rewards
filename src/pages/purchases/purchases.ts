@@ -104,4 +104,16 @@ export class PurchasesPage {
       pageSize: this.pageSize
     });
   }
+  
+  
+  getStatusColor(status : string){
+    if ( status.toUpperCase() == 'COMPLETE' ) 
+       return "LimeGreen";
+    
+    if ( status.toUpperCase() == 'CANCELLED' || status.toUpperCase() == 'CLOSED') 
+       return "danger";
+    
+    return "MediumBlue";
+    
+  }
 }

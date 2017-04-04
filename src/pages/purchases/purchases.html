@@ -9,19 +9,35 @@
 
 <ion-content>
   
-  <ion-list *ngIf="itemPage && itemPage.content">
-    <button ion-item *ngFor="let item of itemPage.content" (click)="itemTapped($event, item)">
+  <ion-list class="item-list-mar" *ngIf="itemPage && itemPage.content">
+    <button ion-item *ngFor="let item of itemPage.content" (click)="itemTapped($event, item)">    
       <ion-icon name="cart" item-left></ion-icon>
-      from {{item.sourceName}}
+      <ion-badge color="{{getStatusColor(item.status)}}">{{item.status}}</ion-badge>
+      {{item.grandtotal}} {{item.currency}}
       <div class="item-note" item-right>
-        {{item.purchaseDate | date: 'dd/MM/yyyy'}}  
+        {{item.purchaseDate | date: 'dd-MM-yy'}}  
       </div>
     </button>
   </ion-list>
-  <div *ngIf="itemPage" >
-    <button *ngIf="hasPrevious()" (click)="prevPage()"><ion-icon name="arrow-back" item-left></ion-icon></button>
-    Page {{itemPage.page + 1}} of {{itemPage.totalPages}} 
-    <button *ngIf="hasNext()" (click)="nextPage()"><ion-icon name="arrow-forward" item-left></ion-icon></button>
-  </div>
-    
 </ion-content>
+
+
+<ion-footer *ngIf="itemPage">
+    <ion-toolbar>
+      <ion-row class="text-center">
+        <ion-col>
+          <button ion-button clear *ngIf="hasPrevious()" (click)="prevPage()">
+            <ion-icon name="arrow-back"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col class="page-view">
+          Page {{itemPage.page + 1}} of {{itemPage.totalPages}} 
+        </ion-col>
+        <ion-col>
+          <button  ion-button clear *ngIf="hasNext()" (click)="nextPage()">
+            <ion-icon name="arrow-forward"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+</ion-footer>

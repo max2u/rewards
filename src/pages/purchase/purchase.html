@@ -6,16 +6,74 @@
 
 
 <ion-content padding>
-  
-   <div *ngIf="purchase" padding>
-   <ion-row>
-    id <b>{{purchase.purchaseId}}</b>
+  <p>
+    <ion-row *ngIf="config.showPurchaseId()">
+      <ion-col col-4 class="attribute">id</ion-col>
+      <ion-col>{{item.purchaseReferenceId}}</ion-col>
     </ion-row>
+    
     <ion-row>
-    source <b>{{purchase.sourceName}}</b>
+      <ion-col col-4 class="attribute">date</ion-col>
+      <ion-col>{{item.purchaseDate | date: 'dd-MM-yy HH:mm'}}</ion-col>
     </ion-row>
+    
     <ion-row>
-    on <b>{{purchase.purchaseDate | date: 'dd/MM/yyyy HH:mm'}}</b>
+      <ion-col col-4 class="attribute">status</ion-col>
+      <ion-col>{{item.status}}</ion-col>
     </ion-row>
-  </div>
+    
+    <ion-row *ngIf="config.showPurchaseSource()" >
+      <ion-col col-4 class="attribute">location</ion-col>
+      <ion-col>{{item.sourceName}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="attribute">points</ion-col>
+      <ion-col>{{item.earnedPoints}}</ion-col>
+    </ion-row>
+    
+    <ion-row *ngIf="item.discount > 0">
+      <ion-col col-4 class="attribute">discount</ion-col>
+      <ion-col>{{item.discount}} {{item.currency}}</ion-col>
+    </ion-row>
+    
+    <ion-row *ngIf="item.tax > 0">
+      <ion-col col-4 class="attribute">tax</ion-col>
+      <ion-col>{{item.tax}} {{item.currency}}</ion-col>
+    </ion-row>
+    <ion-row *ngIf="item.shipping > 0">
+      <ion-col col-4 class="attribute">shipping</ion-col>
+      <ion-col>{{item.shipping}} {{item.currency}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="attribute">note</ion-col>
+      <ion-col>{{item.note}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col col-4 class="attribute">total</ion-col>
+      <ion-col>{{item.grandtotal}} {{item.currency}}</ion-col>
+    </ion-row>
+    
+    <ion-list *ngIf="config.showPurchaseItems()" >
+      <ion-list-header>Items</ion-list-header>
+      <ion-item *ngFor="let lineItem of item.lineItems">
+        <ion-img *ngIf="lineItem.productImage" class="product-image" [src]="lineItem.productImage" item-left (click)="imageTapped(lineItem.productImage)"></ion-img>
+        <h2>{{lineItem.productName}}</h2>
+        <ion-row>
+          <ion-col col-4 class="attribute">quantity</ion-col>
+          <ion-col>{{lineItem.quantity}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 class="attribute">price</ion-col>
+          <ion-col>{{lineItem.unitPrice}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 class="attribute">total</ion-col>
+          <ion-col>{{lineItem.lineTotal}}</ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </p>
 </ion-content>
