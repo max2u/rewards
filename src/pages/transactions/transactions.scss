@@ -1,3 +1,31 @@
 page-transactions {
-
+  .transaction-header{
+    border-style: none; 
+  }
+  
+  .transaction-header .item-inner{
+    border-style: none !important;
+  }
+  
+  
+  .bar-footer{
+    bottom:0;
+    position: fixed;
+    width: 100%;
+  }
+    
+  
+  .text-center{
+    text-align: center;
+  }
+  
+  .page-view{
+    line-height: 40px;
+  }
+  
+  
+  .item-list-mar{
+    margin-bottom: 69px !important;
+  }
 }
+

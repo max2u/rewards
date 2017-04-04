@@ -29,4 +29,8 @@ export class ConfigResponse {
   public backgroundColor : string;
   public buttonColor : string;
   
+  public showPurchaseId: boolean;
+  public showPurchaseItems: boolean;
+  public showPurchaseSource: boolean;
+  
 }
