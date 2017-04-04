@@ -13,8 +13,8 @@ export class Config {
   uuid: string;
 
   constructor() {
-    this.env = 'local';
-    this.client = 'doc';
+    this.env = 'prd';
+    this.client = 'skyits';
     this.apiVersion = 'v1';
     this.mobileVersion = 1.0;
   }
