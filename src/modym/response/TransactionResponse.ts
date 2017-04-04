@@ -1,6 +1,6 @@
 class PointTransactionResponse {
-  transactionId: number;
-  customerId: number;
+  transactionId: string;
+  customerId: string;
   type: string;
   status: string;
   referenceId: string;

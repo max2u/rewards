@@ -44,6 +44,17 @@ export class Config {
     return (this.config && this.config.loyaltyTextColor ? this.config.loyaltyTextColor : '#000'); 
   }
   
+  public showPurchaseId(): boolean{
+    return this.config.showPurchaseId;
+  }
+  
+  public showPurchaseItems(): boolean{
+    return this.config.showPurchaseItems;
+  }
+  
+  public showPurchaseSource(): boolean{
+    return this.config.showPurchaseSource;
+  }
   
   
   

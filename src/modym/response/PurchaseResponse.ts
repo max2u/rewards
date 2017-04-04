@@ -1,20 +1,20 @@
 
 export class PurchaseResponse {
-  purchaseId: number;
+  purchaseId: string;
   purchaseReferenceId: string;
-  customerId: number;
+  customerId: string;
   customerReferenceId: string;
-  sourceId: number;
+  sourceId: string;
   sourceReferenceId: string;
   sourceName: string;
   note: string;
-  earnedPoints: string;
+  earnedPoints: number;
   purchaseDate: Date;
-  subtotal: string;
-  discount: string;
-  tax: string;
-  shipping: string;
-  grandtotal: string;
+  subtotal: number;
+  discount: number;
+  tax: number;
+  shipping: number;
+  grandtotal: number;
   currency: string;
   status: string;
   lineItems: Array<PurchaseLineItemResponse>;
@@ -23,6 +23,7 @@ export class PurchaseResponse {
 class PurchaseLineItemResponse {
   productId: number;
   productName: string;
+  productImage: string;
   sku: string;
   quantity: number;
   unitPrice: number;

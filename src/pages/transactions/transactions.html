@@ -10,28 +10,67 @@
 
 <ion-content>
   
-  <ion-list *ngIf="itemPage && itemPage.content">
-    <button ion-item *ngFor="let item of itemPage.content" (click)="itemTapped($event, item)">
-      <ion-icon name="medal" item-left></ion-icon>
-      <span *ngIf="item.type != 'debit'" >
-        +
-      </span>
-      <span *ngIf="item.type == 'debit'" >
-        -
-      </span>
-      {{item.points}} points
+  <ion-list class="item-list-mar" *ngIf="itemPage && itemPage.content">
+    <ion-item *ngFor="let item of itemPage.content">
+      <button class="transaction-header" ion-item (click)="itemTapped($event, item)">
+        <ion-icon name="medal" item-left></ion-icon>
+        <ion-badge color="{{item.type == 'debit' ? 'danger' : 'LimeGreen'}}">
+          {{(item.type == 'debit' ? '-' :'+')}}{{item.points}} points
+        </ion-badge>
+        <div item-right>
+          {{item.timestamp | date: 'dd/MM/yyyy'}}  
+        </div>
+      </button>
       
       
-      <div class="item-note" item-right>
-        {{item.timestamp | date: 'dd/MM/yyyy'}}  
-      </div>
+      <p *ngIf="item.transactionId == selectedItemId">
+        <ion-row>
+          <ion-col col-4 class="attribute">points</ion-col>
+          <ion-col>{{(item.type == 'debit' ? '-' :'+')}}{{item.points}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 class="attribute">status</ion-col>
+          <ion-col>{{item.status}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 class="attribute"></ion-col>
+          <ion-col>{{item.timestamp | date: 'dd/MM/yyyy HH:mm'}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 class="attribute">value</ion-col>
+          <ion-col>{{item.pointValue}} {{item.pointValueCurrency}}</ion-col>
+        </ion-row>
+        <ion-row  *ngIf="item.type != 'debit'">
+          <ion-col col-4 class="attribute">expiration</ion-col>
+          <ion-col>{{item.expiration | date: 'dd/MM/yyyy'}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4 class="attribute">note</ion-col>
+          <ion-col>{{item.note}}</ion-col>
+        </ion-row>
+      </p>
       
-      
-    </button>
+    </ion-item>
   </ion-list>
-  <div *ngIf="itemPage" >
-    <button *ngIf="hasPrevious()" (click)="prevPage()"><ion-icon name="arrow-back" item-left></ion-icon></button>
-    Page {{itemPage.page + 1}} of {{itemPage.totalPages}} 
-    <button *ngIf="hasNext()" (click)="nextPage()"><ion-icon name="arrow-forward" item-left></ion-icon></button>
-  </div>
 </ion-content>
+
+
+<ion-footer *ngIf="itemPage">
+    <ion-toolbar>
+      <ion-row class="text-center">
+        <ion-col>
+          <button ion-button clear *ngIf="hasPrevious()" (click)="prevPage()">
+            <ion-icon name="arrow-back"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col class="page-view">
+          Page {{itemPage.page + 1}} of {{itemPage.totalPages}} 
+        </ion-col>
+        <ion-col>
+          <button  ion-button clear *ngIf="hasNext()" (click)="nextPage()">
+            <ion-icon name="arrow-forward"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-toolbar>
+</ion-footer>

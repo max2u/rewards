@@ -1,7 +1,6 @@
 import { PageResponse } from '../../modym/response/PageRespponse';
 import { Config } from '../../providers/Config';
 import { ModymService } from '../../providers/ModymService';
-import { TransactionPage } from '../transaction/transaction';
 import { Component } from '@angular/core';
 import { NavController, NavParams, Loading, LoadingController, AlertController } from 'ionic-angular';
 import { Observable } from 'rxjs';
@@ -18,12 +17,8 @@ import { Observable } from 'rxjs';
 })
 export class TransactionsPage {
   loading: Loading;
-  selectedItem: any;
-
-  page: number = 0;
-  pageSize: number = 10;
-
   itemPage: PageResponse<PointTransactionResponse>;
+  selectedItemId: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -31,27 +26,31 @@ export class TransactionsPage {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private modymService: ModymService) {
-    this.page = navParams.get("page") || this.page;
-    this.pageSize = navParams.get("pageSize") || this.pageSize;
-    this.showLoading();
-
-    this.modymService.getTransactionPage(this.page, this.pageSize)
-      .catch((error: any) => {
-        this.loading.dismiss();
-        return Observable.of(error);
-      })
-      .subscribe((resp: PageResponse<PointTransactionResponse>) => {
-        this.loading.dismiss();
-        if (resp) {
-          this.itemPage = resp;
-        } else {
-          this.showError(resp);
-        }
-      },
-      error => {
-        this.loading.dismiss();
-        this.showError(error);
-      });
+    
+    if(navParams.get("itemPage")){
+      this.itemPage= navParams.get("itemPage");
+    }else{
+      var page = navParams.get("page") || 0;
+      this.showLoading();
+  
+      this.modymService.getTransactionPage(page, 10)
+        .catch((error: any) => {
+          this.loading.dismiss();
+          return Observable.of(error);
+        })
+        .subscribe((resp: PageResponse<PointTransactionResponse>) => {
+          this.loading.dismiss();
+          if (resp) {
+            this.itemPage = resp;
+          } else {
+            this.showError(resp);
+          }
+        },
+        error => {
+          this.loading.dismiss();
+          this.showError(error);
+        });
+      }
   }
 
   showLoading() {
@@ -76,10 +75,13 @@ export class TransactionsPage {
   }
 
 
-  itemTapped(event, item) {
-    this.navCtrl.push(TransactionPage, {
-      transaction: item
-    });
+  itemTapped(event, item:PointTransactionResponse) {
+    this.selectedItemId= item.transactionId;
+//      selectedItem: item,
+//        itemPage: this.itemPage
+//    });
+
+    
   }
 
   hasPrevious(): boolean {
@@ -92,15 +94,13 @@ export class TransactionsPage {
 
   prevPage() {
     this.navCtrl.setRoot(TransactionsPage, {
-      page: this.page > 0 ? this.page -1 :  0,
-      pageSize: this.pageSize
+      page: this.itemPage.page > 0 ? this.itemPage.page -1 :  0
     });
   }
   
   nextPage() {
     this.navCtrl.setRoot(TransactionsPage, {
-      page: this.itemPage && this.itemPage.page < (this.itemPage.totalPages -1) ? this.itemPage.page + 1 :  0,
-      pageSize: this.pageSize
+      page: this.itemPage && this.itemPage.page < (this.itemPage.totalPages -1) ? this.itemPage.page + 1 :  0
     });
   }
 
