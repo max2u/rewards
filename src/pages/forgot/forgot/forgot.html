@@ -10,9 +10,13 @@
       <ion-row>
         <ion-col>
           <ion-list inset>
-            <ion-item>
+            <ion-item *ngIf="config.smsPasswordResetSupported()">
               <ion-label floating>Phone</ion-label>
-              <ion-input type="tel" name="phone"  [(ngModel)]="phone" required></ion-input>
+              <ion-input  type="tel" name="phone"  [(ngModel)]="phone" ></ion-input>
+            </ion-item>
+             <ion-item *ngIf="config.emailPasswordResetSupported()">
+              <ion-label floating>Email</ion-label>
+              <ion-input  type="email" name="email"  [(ngModel)]="email" ></ion-input>
             </ion-item>
           </ion-list>
         </ion-col>

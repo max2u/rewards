@@ -12,6 +12,7 @@ export class ConfigResponse {
   public emailRequired : boolean;
   public phoneRequired : boolean;
   public phoneVerificationRequired : boolean;
+  public passwordResetMethod : string;
 
   public facebook : string;
   public instagram : string;

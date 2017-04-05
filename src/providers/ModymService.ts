@@ -130,8 +130,8 @@ export class ModymService {
   /**
   * forgot password request
   */
-  public postForgot(phone): Observable<UserForgotPasswordResponse>{
-    return this.post({ "phone": phone, 'deviceId' : this.config.uuid }, '/session/forgot');
+  public postForgot(phone, email): Observable<UserForgotPasswordResponse>{
+    return this.post({ "phone": phone, "email": email, 'deviceId' : this.config.uuid }, '/session/forgot');
   }
 
   /**

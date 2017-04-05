@@ -56,12 +56,23 @@ export class AuthService {
   }
 
 
-  public forgot(phone) : Observable<UserForgotPasswordResponse>{
-    if (!phone) {
-      return Observable.throw("Please fill phone");
-    } else {
-      return this.modymService.postForgot(phone);
+  public forgot(phone:string, email:string) : Observable<UserForgotPasswordResponse>{
+    if(this.config.config.passwordResetMethod == 'NONE' ){
+      return Observable.throw("Please reset is not supported");
     }
+    if (this.config.config.passwordResetMethod == 'SMS' && !phone) {
+      return Observable.throw("Please fill phone");
+    } 
+    
+    if (this.config.config.passwordResetMethod == 'EMAIL' && !email) {
+      return Observable.throw("Please fill email");
+    }
+    
+    if (!email && !phone) {
+      return Observable.throw("Please fill phone or email");
+    }
+    
+    return this.modymService.postForgot(phone, email);
   }
 
   public reset(resquestId, userId, newPassword, phone) :Observable<UserPasswordResetResponse>{
