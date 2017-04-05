@@ -5,7 +5,7 @@ import { NavController, NavParams, AlertController, LoadingController, Loading }
 import { AuthService } from '../../providers/AuthService';
 import { Config } from '../../providers/Config';
 import { ModymService } from '../../providers/ModymService';
-import { RegisterPage } from '../register/register';
+import { ForgotPage } from '../forgot/forgot/forgot';
 import { SummaryPage } from '../summary/summary';
 import { PreRegisterPage } from '../preregister/preregister';
 import 'rxjs/add/operator/catch';
@@ -37,7 +37,7 @@ export class LoginPage {
   }
   
   public forgotPassword(){
-    this.nav.push(RegisterPage);
+    this.nav.push(ForgotPage);
   }
 
   public login() {
