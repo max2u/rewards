@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar  color="{{config.getColor()}}">
+    <ion-title>Forgot</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="login-content" [ngStyle]="{'background-image': 'url(' + config.getBgImage() + ')', 'background-size': 'cover','background-repeat': 'no-repeat'}" padding>
+  <div class="login-box">
+    <form (ngSubmit)="forgot()" #forgotForm="ngForm">
+      <ion-row>
+        <ion-col>
+          <ion-list inset>
+            <ion-item>
+              <ion-label floating>Phone</ion-label>
+              <ion-input type="tel" name="phone"  [(ngModel)]="phone" required></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="signup-col">
+          <button ion-button class="submit-btn"  color="{{config.getButtonColor()}}" full type="submit" [disabled]="!forgotForm.form.valid">Next</button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+</ion-content>

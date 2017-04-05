@@ -25,7 +25,7 @@ export class AccountPage extends AbstractPage {
     alertCtrl: AlertController,
     loadingCtrl: LoadingController
   ) {
-    super(alertCtrl, loadingCtrl);
+    super(navCtrl, alertCtrl, loadingCtrl);
     this.userDetails = new UserDetailsUpdateRequest();
     this.userDetails.title = authService.currentUser.title;
     this.userDetails.firstName = authService.currentUser.firstName;
