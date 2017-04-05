@@ -17,7 +17,6 @@ export class PreRegisterPage {
   constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, protected config: Config, private modymService: ModymService) { }
 
   public register() {
-    debugger;
     this.auth.preregister(this.registerCredentials).subscribe(response => {
       
       if (response && response.id ) {
