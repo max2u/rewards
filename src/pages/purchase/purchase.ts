@@ -21,7 +21,7 @@ export class PurchasePage extends AbstractPage{
     protected config: Config,
     protected authService: AuthService
   ) { 
-    super(alertCtrl, loadingCtrl)
+    super(navCtrl, alertCtrl, loadingCtrl)
   this.item = navParams.get('purchase');
   
   }
