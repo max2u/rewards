@@ -18,6 +18,9 @@ import { TransactionsPage } from '../pages/transactions/transactions';
 import { PurchasesPage } from '../pages/purchases/purchases';
 import { AccountPage } from '../pages/account/account';
 import { CardsPage } from '../pages/cards/cards';
+import { ForgotVerifyPage } from '../pages/forgot/forgot-verify/forgot-verify';
+import { ForgotPage } from '../pages/forgot/forgot/forgot';
+import { ResetPage } from '../pages/forgot/reset/reset';
 import { PreRegisterPage } from '../pages/preregister/preregister';
 import { PurchasePage } from '../pages/purchase/purchase';
 import { TransactionPage } from '../pages/transaction/transaction';
@@ -48,7 +51,10 @@ const cloudSettings: CloudSettings = {
     PreRegisterPage,
     VerifyPage,
     TransactionPage,
-    CardsPage
+    CardsPage,
+    ForgotPage,
+    ForgotVerifyPage,
+    ResetPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -69,7 +75,10 @@ const cloudSettings: CloudSettings = {
     PreRegisterPage,
     VerifyPage,
     TransactionPage,
-    CardsPage
+    CardsPage,
+    ForgotPage,
+    ForgotVerifyPage,
+    ResetPage
   ],
   providers: [
     AuthService,
