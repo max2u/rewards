@@ -32,7 +32,7 @@
         <ion-col class="signup-col">
           <button ion-button color="{{config.getButtonColor()}}" full type="submit" [disabled]="!registerForm.form.valid">Login</button>
           
-          <p ion-button class="register-btn" block clear (click)="forgotPassword()" 
+          <p ion-button *ngIf="config.forgotPasswordSupported()" class="register-btn" block clear (click)="forgotPassword()" 
             [style.color]="config.getTextColor()">Forgot Password?</p>
             
             <p [style.color]="config.getTextColor()">

@@ -10,7 +10,8 @@ import { NavController, AlertController, LoadingController } from 'ionic-angular
   templateUrl: 'forgot.html'
 })
 export class ForgotPage extends AbstractPage {
-  phone: '';
+  phone: string;
+  email: string;
 
   constructor(
     private nav: NavController,
@@ -24,7 +25,7 @@ export class ForgotPage extends AbstractPage {
 
   public forgot() {
     this.showLoading();
-    this.authService.forgot(this.phone).subscribe(response => {
+    this.authService.forgot(this.phone, this.email).subscribe(response => {
       this.dismissLoading();
       if (response && response.id) {
         this.nav.push(ForgotVerifyPage, {

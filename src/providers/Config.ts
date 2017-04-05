@@ -19,18 +19,18 @@ export class Config {
     this.mobileVersion = 1.0;
   }
 
-  public getTextColor(){
-     return this.config && this.config.textColor ? this.config.textColor : '#000';
+  public getTextColor() {
+    return this.config && this.config.textColor ? this.config.textColor : '#000';
   }
-  
+
   public getColor() {
-    return (this.config && this.config.backgroundColor ? this.config.backgroundColor : 'primary');  
+    return (this.config && this.config.backgroundColor ? this.config.backgroundColor : 'primary');
   }
 
   public getButtonColor() {
-    return (this.config && this.config.buttonColor ? this.config.buttonColor : 'primary');  
+    return (this.config && this.config.buttonColor ? this.config.buttonColor : 'primary');
   }
-  
+
   public getLogoImage() {
     return this.config ? this.config.logoImage : '';
   }
@@ -38,24 +38,34 @@ export class Config {
   public getBgImage() {
     return this.config ? this.config.backgroundImage : '';
   }
-  
-  
+
   public getLoyaltyTextColot() {
-    return (this.config && this.config.loyaltyTextColor ? this.config.loyaltyTextColor : '#000'); 
+    return (this.config && this.config.loyaltyTextColor ? this.config.loyaltyTextColor : '#000');
   }
-  
-  public showPurchaseId(): boolean{
+
+  public showPurchaseId(): boolean {
     return this.config.showPurchaseId;
   }
-  
-  public showPurchaseItems(): boolean{
+
+  public showPurchaseItems(): boolean {
     return this.config.showPurchaseItems;
   }
-  
-  public showPurchaseSource(): boolean{
+
+  public showPurchaseSource(): boolean {
     return this.config.showPurchaseSource;
+  }
+
+  public forgotPasswordSupported(): boolean {
+    return (this.config && this.config.passwordResetMethod && this.config.passwordResetMethod != "NONE");
   }
   
   
+  public smsPasswordResetSupported(): boolean {
+    return (this.config && this.config.passwordResetMethod && this.config.passwordResetMethod.indexOf("SMS") > -1);
+  }
+  
+  public emailPasswordResetSupported(): boolean {
+    return (this.config && this.config.passwordResetMethod && this.config.passwordResetMethod.indexOf("EMAIL") > -1);
+  }
   
 }
